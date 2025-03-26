@@ -1,0 +1,21 @@
+.gallery {
+  --images-per-row: 4;
+  --gap-between-images: 5px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-between-images);
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.gallery li {
+  width: calc((100% / var(--images-per-row)) - var(--gap-between-images));
+}
+
+.gallery img {
+  width: 100%;
+}

@@ -1,0 +1,50 @@
+.modal {
+  --offset: 40px;
+  --label-height: 40px;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  align-items: center;
+
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  height: fit-content;
+  width: fit-content;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.484);
+}
+
+.container {
+  height: fit-content;
+  width: fit-content;
+}
+
+.modalImage {
+  user-select: none;
+  margin-top: 25px;
+  width: 100%;
+  max-height: calc(95vh - var(--label-height));
+}
+
+.modalLabel {
+  --font-size-padding: 2px;
+
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+
+  width: 100%;
+  height: var(--label-height);
+  font-size: calc(var(--label-height) / 2 - var(--font-size-padding));
+  background-color: rgba(0, 0, 0, 0.695);
+}

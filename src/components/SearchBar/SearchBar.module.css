@@ -1,0 +1,11 @@
+.searchBar {
+  margin-top: 15px;
+  vertical-align: top;
+  text-align: center;
+}
+
+.searchBar input {
+  margin-right: 10px;
+  height: 20px;
+  width: 220px;
+}
