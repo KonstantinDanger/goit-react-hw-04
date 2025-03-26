@@ -1,5 +1,5 @@
 import fetchImages, { imagesPerPage } from "../../api/axios-api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -7,7 +7,7 @@ import Modal from "../ImageModal/ImageModal.jsx";
 import SearchBar from "../SearchBar/SearchBar";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ImageGallery from "../ImageGallery/ImageGallery";
-import LoadMoreButton from "../LoadMoreButton/LoadMoreButton";
+import LoadMoreButton from "../LoadMoreBtn/LoadMoreBtn.jsx";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,26 +20,14 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
 
-  useEffect(() => {
-    const handleImageClick = (e) => {
-      e.preventDefault();
-      const target = e.target;
+  const handleImageClick = (imageId) => {
+    const targetImage = images.find((image) => image.id === imageId);
 
-      if (target.tagName !== "IMG") return;
-      if (target === modalImage) return;
+    if (!targetImage || targetImage === modalImage) return;
 
-      const targetImage = images.find((image) => image.id === target.id);
-      setModalImage(targetImage);
-
-      openModal();
-    };
-
-    document.addEventListener("click", handleImageClick);
-
-    return () => {
-      document.removeEventListener("click", handleImageClick);
-    };
-  }, [images, modalImage]);
+    setModalImage(targetImage);
+    openModal();
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -96,7 +84,7 @@ function App() {
         />
       ) : images.length > 0 ? (
         <div>
-          <ImageGallery images={images} />
+          <ImageGallery images={images} onImageClick={handleImageClick} />
           {canLoadMore && !isLoading && (
             <LoadMoreButton onLoadMore={handleLoadMoreImages} />
           )}

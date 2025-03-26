@@ -17,7 +17,6 @@ export default function ImageModal({ isOpen, onRequestClose, image }) {
       >
         <div className={css.container}>
           <img
-            onClick={(e) => e.stopPropagation()}
             className={css.modalImage}
             src={image.urls.full}
             alt={image.alt_description}
